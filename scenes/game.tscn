@@ -259,6 +259,5 @@ position = Vector2(49, -44)
 [node name="Coin3" parent="." instance=ExtResource("6_l4p7g")]
 position = Vector2(31, -251)
 
-[node name="RigidBody2D" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(76, -90)
-lock_rotation = true
+[node name="SlimeGreen" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(731, -123)

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 
 const SPEED = 150.0
 const JUMP_ACCELERATION = -20000.0
@@ -29,11 +31,12 @@ func _physics_process(delta: float) -> void:
 	# direction: -1, 0, 1
 	var direction : float = Input.get_axis("move_left", "move_right")
 	if direction:
-		$AnimatedSprite2D.play("run")
+		if is_on_floor():
+			animated_sprite.play("run")
 		velocity.x = direction * SPEED
-		$AnimatedSprite2D.flip_h = direction < 0
-		if not $AnimatedSprite2D.is_playing():
-			$AnimatedSprite2D.play("idle")
+		animated_sprite.flip_h = direction < 0
+		if not animated_sprite.is_playing():
+			animated_sprite.play("idle")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
@@ -42,14 +45,14 @@ func _physics_process(delta: float) -> void:
 
 func hit(from_where : Vector2):
 	$HurtSFX.play()
-	$AnimatedSprite2D.play("hurt")
+	animated_sprite.play("hurt")
 	var direction : Vector2 = -global_position.direction_to(from_where) 
 	velocity = direction * Vector2(1, 0.5) * 500
 
 
 func kill():
 	$DeathSFX.play()
-	$AnimatedSprite2D.play("death")
+	animated_sprite.play("death")
 	#$CollisionShape2D.queue_free()
 	$RespawnCoolDown.start()
 	Engine.time_scale = 0.5
