@@ -157,6 +157,8 @@ script = ExtResource("3_qw3lm")
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_aelh5")
 
+[node name="JumpTime" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="WakeArea" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_area_2d_body_exited"]

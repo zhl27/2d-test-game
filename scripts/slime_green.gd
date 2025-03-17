@@ -14,28 +14,26 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug"): print(constant_linear_velocity)
-	#print("delta:", delta)
 	
-	
+	move_and_collide(get_gravity() * delta)
+		
 	if $RayCastRight.is_colliding():
-		if Input.is_action_just_pressed("debug"): print("ray cast right")
-		constant_linear_velocity.x = -SPEED * delta
+		position.x += -SPEED * delta
+		print("position1:", position)
 	elif $RayCastLeft.is_colliding():
-		if Input.is_action_just_pressed("debug"): print("ray cast left")
-		constant_linear_velocity.x = SPEED * delta
-	
+		position.x += SPEED * delta
+		print("position2:", position)
+		
 	if is_on_floor():
 		print("is on floor")
-		constant_linear_velocity.y = -2000 * delta
+		position.y -= 2000 * delta
+		print("position3:", position)
 		
 	for body in objects_still_in_area:
 		body.hit(global_position)
 	
-	constant_linear_velocity += get_gravity() * delta
-	
-	#print(constant_force)
-	move_and_collide(constant_linear_velocity)
+	print(position)
+	print(global_position)
 	
 
 func is_on_floor():
