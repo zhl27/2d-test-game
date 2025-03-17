@@ -44,6 +44,11 @@ kill_player={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Entities"
+2d_physics/layer_3="Player"
+
 [physics]
 
 2d/default_linear_damp=0.0

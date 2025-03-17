@@ -11,21 +11,21 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#Engine.time_scale = 0.05
-	print(linear_velocity)
-	if $RayCast2D.is_colliding():
-		print("Collision")
-		# do floating animation
-		linear_velocity.y = 2000 * sin(Time.get_ticks_msec()/1000) * delta
+	#print(linear_velocity)
+	#if $RayCast2D.is_colliding():
+		##print("Collision")
+		### do floating animation
+		#linear_velocity.y -= 1000 * delta
+	#linear_velocity.y -= 800 * delta
 	
-	
-		
 	#if Time.get_ticks_msec() % 500 == 0:
-		#print(position)
+		#print(position)++
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == %Player:
-		queue_free()
+		$AnimationPlayer.play("pick_up")
 		
-func picked_up():
-	pass
+func pick_up():
+	$AudioStreamPlayer.play()
+	queue_free()

@@ -11,6 +11,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta # apply gravity
 		#print(get_gravity())
+		
+	if Input.is_action_just_pressed("kill_player"):
+		kill()
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
