@@ -1,0 +1,145 @@
+[gd_scene load_steps=21 format=3 uid="uid://b1jcic08442ox"]
+
+[ext_resource type="Texture2D" uid="uid://drjuhfxt75nyu" path="res://assets/brackeys_platformer_assets/sprites/coin.png" id="1_74vds"]
+[ext_resource type="Script" uid="uid://dtmjl0xq5m30a" path="res://scripts/coin.gd" id="1_fe2s7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oimm6"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urgh8"]
+atlas = ExtResource("1_74vds")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5pe5"]
+atlas = ExtResource("1_74vds")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvxqe"]
+atlas = ExtResource("1_74vds")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2j55"]
+atlas = ExtResource("1_74vds")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbfy1"]
+atlas = ExtResource("1_74vds")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o77x8"]
+atlas = ExtResource("1_74vds")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl0jn"]
+atlas = ExtResource("1_74vds")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaryn"]
+atlas = ExtResource("1_74vds")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2y7y"]
+atlas = ExtResource("1_74vds")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oh2"]
+atlas = ExtResource("1_74vds")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bpf0"]
+atlas = ExtResource("1_74vds")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_barb3"]
+atlas = ExtResource("1_74vds")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbcqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urgh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5pe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvxqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2j55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbfy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o77x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl0jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaryn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2y7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7oh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bpf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_barb3")
+}],
+"loop": true,
+"name": &"coin_flip",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_a3sey"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hhh3o"]
+resource_name = "float"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjvwc"]
+_data = {
+&"RESET": SubResource("Animation_a3sey"),
+&"float": SubResource("Animation_hhh3o")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wi4hg"]
+radius = 5.0
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 2
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_fe2s7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oimm6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mbcqb")
+animation = &"coin_flip"
+autoplay = "coin_flip"
+frame_progress = 0.84769
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fjvwc")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wi4hg")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 5)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

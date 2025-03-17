@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjoydiko1f3vv"
+path="res://.godot/imported/Plane04-10.obj-aa13d52071d352dfbfe9e33314a7c894.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Plane04-10.obj-aa13d52071d352dfbfe9e33314a7c894.mesh"]
+
+source_file="res://assets/voxel_planes/4/Plane04-10.obj"
+dest_files=["res://.godot/imported/Plane04-10.obj-aa13d52071d352dfbfe9e33314a7c894.mesh", "res://.godot/imported/Plane04-10.obj-aa13d52071d352dfbfe9e33314a7c894.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
