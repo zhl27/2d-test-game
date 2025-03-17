@@ -27,5 +27,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		$AnimationPlayer.play("pick_up")
 		
 func pick_up():
-	$AudioStreamPlayer.play()
+	$PickUpSFX.play()
 	queue_free()
