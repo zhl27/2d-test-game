@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2xjuunk01ucj"]
+[gd_scene load_steps=18 format=3 uid="uid://b2xjuunk01ucj"]
 
 [ext_resource type="Script" uid="uid://b3i4tu1ufcku0" path="res://scripts/slime_green.gd" id="1_4522x"]
 [ext_resource type="Texture2D" uid="uid://c8unxbnpb58f6" path="res://assets/brackeys_platformer_assets/sprites/slime_green.png" id="1_v76sd"]
-[ext_resource type="Script" uid="uid://bxslfqo5oku3g" path="res://scripts/slime_wake_area.gd" id="3_qw3lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a81h1"]
 size = Vector2(10, 11.5)
@@ -104,7 +103,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3668s")
 }],
-"loop": false,
+"loop": true,
 "name": &"wake_up",
 "speed": 5.0
 }]
@@ -112,14 +111,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72bjc"]
 size = Vector2(8.39063, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aelh5"]
-size = Vector2(115, 69)
-
 [node name="SlimeGreen" type="AnimatableBody2D"]
 collision_layer = 2
-sync_to_physics = false
 script = ExtResource("1_4522x")
-SPEED = 400.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6.25)
@@ -128,18 +122,19 @@ shape = SubResource("RectangleShape2D_a81h1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_vcult")
-animation = &"wake_up"
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.642062
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_mask = 4
-monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.195313, -6)
 shape = SubResource("RectangleShape2D_72bjc")
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-target_position = Vector2(0, 10)
+target_position = Vector2(0, 5)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(5, -6)
@@ -149,15 +144,5 @@ target_position = Vector2(5, 0)
 position = Vector2(-5, -6)
 target_position = Vector2(-5, 0)
 
-[node name="WakeArea" type="Area2D" parent="."]
-collision_mask = 4
-script = ExtResource("3_qw3lm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WakeArea"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_aelh5")
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="WakeArea" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="body_entered" from="DamageArea" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="DamageArea" to="." method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="WakeArea" to="WakeArea" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
