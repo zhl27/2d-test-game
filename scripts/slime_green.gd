@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var SPEED : float = 300
-
+var objects_still_in_area : Array[Node2D] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,9 +20,11 @@ func _physics_process(delta: float) -> void:
 	
 	if $RayCastDown.is_colliding():
 		apply_central_impulse(Vector2(0,-100))
-
+		
+	for body in objects_still_in_area:
+		body.hit(global_position)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	var direction : Vector2 = position.direction_to(body.global_position) * 1000 
-	print(direction)
-	body.hit(direction)
+	objects_still_in_area.append(body)
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	objects_still_in_area.erase(body)

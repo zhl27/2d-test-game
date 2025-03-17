@@ -43,7 +43,8 @@ func _physics_process(delta: float) -> void:
 func hit(from_where : Vector2):
 	$HurtSFX.play()
 	$AnimatedSprite2D.play("hurt")
-	velocity += from_where
+	var direction : Vector2 = -global_position.direction_to(from_where) 
+	velocity = direction * Vector2(1, 0.5) * 500
 
 
 func kill():
