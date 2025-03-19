@@ -205,7 +205,7 @@ _data = {
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_4p1oj")]
+[node name="Player" parent="." groups=["Players"] instance=ExtResource("1_4p1oj")]
 unique_name_in_owner = true
 position = Vector2(0, -71)
 
@@ -251,7 +251,7 @@ position = Vector2(169, -105)
 position = Vector2(143, -146)
 
 [node name="Coin" parent="." instance=ExtResource("6_l4p7g")]
-position = Vector2(131, -43)
+position = Vector2(138, -44)
 
 [node name="Coin2" parent="." instance=ExtResource("6_l4p7g")]
 position = Vector2(49, -44)
@@ -260,4 +260,7 @@ position = Vector2(49, -44)
 position = Vector2(31, -251)
 
 [node name="SlimeGreen" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(162, -52)
+position = Vector2(71, -59)
+
+[node name="SlimeGreen2" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(169, -109)

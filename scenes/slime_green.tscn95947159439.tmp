@@ -142,7 +142,6 @@ animation = &"wake_up"
 autoplay = "sleeping"
 
 [node name="DamageArea" type="Area2D" parent="."]
-collision_layer = 2
 collision_mask = 4
 monitoring = false
 
@@ -158,13 +157,12 @@ target_position = Vector2(5, 0)
 position = Vector2(-5, -6)
 target_position = Vector2(-5, 0)
 
-[node name="AttentionArea" type="Area2D" parent="."]
-collision_layer = 2
+[node name="WakeArea" type="Area2D" parent="."]
 collision_mask = 4
 input_pickable = false
 script = ExtResource("3_qw3lm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttentionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WakeArea"]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_aelh5")
 
@@ -176,8 +174,9 @@ autostart = true
 wait_time = 0.5
 autostart = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="WakeArea" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="AttentionArea" to="AttentionArea" method="_on_body_entered"]
+[connection signal="body_entered" from="WakeArea" to="WakeArea" method="_on_body_entered"]
 [connection signal="timeout" from="JumpCoolDown" to="." method="_on_jump_time_timeout"]
 [connection signal="timeout" from="HitCoolDown" to="." method="_on_hit_cool_down_timeout"]

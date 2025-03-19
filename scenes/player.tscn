@@ -176,7 +176,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w7l6k")
 }, {
-"duration": 1.5,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_4sko4")
 }, {
 "duration": 1.0,
@@ -184,7 +184,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -297,11 +297,13 @@ z_index = 5
 collision_layer = 4
 script = ExtResource("1_4li7i")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Players"]]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j6ost")
-animation = &"death"
+animation = &"hurt"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -9)
