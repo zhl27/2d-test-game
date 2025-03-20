@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 #enum States {IDLE, RUNNING, JUMPING, FALLING, ASLEEP, JUMP_CHARGING, JUMP_READY, ATTACK_CHARGING, ATTACK_READY}
 #enum CooldownStates {CHARGING, READY}
-#
-#var current_state := States.IDLE | States.JUMP_CHARGING
+##
+#var current_state : States :
+	#set(new_state):
+		#current_state = new_state
+	#get:
+		#return current_state
 
 # 4 (100) | 2 (010) = 6 (110)
 # 0 (000) | 5 (101) = 5 # IDLE used in an operation results in the other operand state
@@ -93,7 +97,9 @@ func jump_around(delta):
 		# Add some randomness to movement
 		var direction = 1 if randf() > 0.5 else -1
 		h_acceleration = direction * h_acceleration
-	
+		
+		AnimatedSprite.flip_h = sign(h_acceleration) < 0
+
 	velocity.x += h_acceleration * delta
 	velocity.y += jump_acceleration * delta
 	

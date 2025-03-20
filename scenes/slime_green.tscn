@@ -152,11 +152,11 @@ shape = SubResource("CircleShape2D_qw3lm")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(5, -6)
-target_position = Vector2(5, 0)
+target_position = Vector2(10, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, -6)
-target_position = Vector2(-5, 0)
+target_position = Vector2(-10, 0)
 
 [node name="AttentionArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -175,8 +175,6 @@ autostart = true
 [node name="HitCoolDown" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
-
-[node name="StateMachine" type="Node" parent="."]
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_area_2d_body_exited"]
