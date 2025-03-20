@@ -260,7 +260,7 @@ position = Vector2(49, -44)
 position = Vector2(31, -251)
 
 [node name="SlimeGreen" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(71, -59)
+position = Vector2(101, -56)
 
 [node name="SlimeGreen2" parent="." instance=ExtResource("8_gee14")]
-position = Vector2(169, -109)
+position = Vector2(228, -96)

@@ -141,7 +141,7 @@ sprite_frames = SubResource("SpriteFrames_vcult")
 animation = &"wake_up"
 autoplay = "sleeping"
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="DamageArea" type="Area2D" parent="." groups=["Enemies"]]
 collision_layer = 2
 collision_mask = 4
 monitoring = false
@@ -175,6 +175,8 @@ autostart = true
 [node name="HitCoolDown" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="StateMachine" type="Node" parent="."]
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_area_2d_body_exited"]
